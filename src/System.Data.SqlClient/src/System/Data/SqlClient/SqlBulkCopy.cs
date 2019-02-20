@@ -182,6 +182,7 @@ namespace System.Data.SqlClient
         private int _notifyAfter;
         private int _rowsUntilNotification;
         private bool _insideRowsCopiedEvent;
+        private string _orderHint;
 
         private object _rowSource;
         private SqlDataReader _SqlDataReaderRowSource;
@@ -391,6 +392,18 @@ namespace System.Data.SqlClient
                     }
                 }
                 return null;
+            }
+        }
+
+        public string OrderHint
+        {
+            get
+            {
+                return _orderHint;
+            }
+            set
+            {
+                _orderHint = value;
             }
         }
 
@@ -735,6 +748,10 @@ namespace System.Data.SqlClient
                 {
                     updateBulkCommandText.Append((addSeparator ? ", " : "") + "FIRE_TRIGGERS");
                     addSeparator = true;
+                }
+                if (!String.IsNullOrEmpty(_orderHint))
+                {
+                    updateBulkCommandText.Append((addSeparator ? ", " : "") + "ORDER (" + _orderHint + ")");
                 }
                 updateBulkCommandText.Append(")");
             }

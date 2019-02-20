@@ -295,6 +295,7 @@ namespace System.Data.SqlClient
         public string DestinationTableName { get { throw null; } set { } }
         public bool EnableStreaming { get { throw null; } set { } }
         public int NotifyAfter { get { throw null; } set { } }
+        public string OrderHint { get { throw null; } set { } }
         public event System.Data.SqlClient.SqlRowsCopiedEventHandler SqlRowsCopied { add { } remove { } }
         public void Close() { }
         void System.IDisposable.Dispose() { }
